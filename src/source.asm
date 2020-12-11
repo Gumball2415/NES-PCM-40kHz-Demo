@@ -7,7 +7,7 @@ db $4E, $45, $53, $1A, $00, $00, $20, $08, $00, $01, $00, $07, $00, $00, $00, $0
 
 ;;; PRGAudio
 
-incbin "audio.bin"
+incbin "christmas.bin"
 
 ;;; PRGLast
 
@@ -58,7 +58,7 @@ RESET:
 	jsr LoadBackground
 	jsr VBlank
 	lda $2002
-	lda #%00011110
+	lda #%00001110
 	sta $2001
 	lda #$00
 	sta $2006
@@ -109,9 +109,9 @@ LoadPalette:
 	lda #$ff
 	sta $2007
 	sta $2007
-	lda #$2b
+	lda #$2a
 	sta $2007
-	lda #$2c
+	lda #$26
 	sta $2007
 	rts
 
@@ -163,16 +163,17 @@ LoadBackground:
 	rts
 	
 ;; Here's where the whole magic happens (PCM streaming)
+;; writes a sample every 45 CPU cycles
 DMCDirectLoad:
 	ldy #$00
 	ldx #$40
 	
 	lda $ff
-	cmp #$fa
+	cmp #$ff
 	bne @res
 	lda #$00
 	sta $ff
-	
+
 	@res	
 	sta $8000
 	lda #$80
