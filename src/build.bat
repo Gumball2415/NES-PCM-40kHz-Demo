@@ -1,0 +1,1 @@
+asm6 -l source.asm dest.nes
